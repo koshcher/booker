@@ -7,7 +7,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class Api {
     private static Retrofit retrofit;
-    private static final String base = "https://localhost:44314";
+    private static final String base = "https://booker.hop.sh"; //"https://booker-api-b41r.onrender.com"; // "https://localhost:44314";
 
     public static Retrofit getClient() {
         if (retrofit == null) {
