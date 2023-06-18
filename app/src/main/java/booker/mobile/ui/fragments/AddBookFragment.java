@@ -69,6 +69,10 @@ public class AddBookFragment extends Fragment {
                 @Override
                 public void onResponse(Call<NoDataApiResult> call, Response<NoDataApiResult> response) {
                     NoDataApiResult result = response.body();
+                    if(result == null) {
+                        Toast.makeText(getContext(),"Something went wrong.", Toast.LENGTH_LONG).show();
+                        return;
+                    }
 
                     if(result.getError() != null) {
                         Toast.makeText(getContext(), result.getError().getMessage(), Toast.LENGTH_LONG).show();

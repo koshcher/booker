@@ -57,6 +57,10 @@ public class BookListFragment extends Fragment {
                 if(!response.isSuccessful()) return;
 
                 ApiResult<List<Book>> result = response.body();
+                if(result == null) {
+                    Toast.makeText(getContext(), "Sorry! Can't load books from the server.", Toast.LENGTH_LONG).show();
+                    return;
+                }
 
                 if(result.getError() != null) {
                     Toast.makeText(getContext(), result.getError().getMessage(), Toast.LENGTH_LONG).show();
@@ -66,7 +70,7 @@ public class BookListFragment extends Fragment {
                 books = result.getData();
 
                 bookListRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-                BookAdapter adapter = new BookAdapter(books);
+                BookAdapter adapter = new BookAdapter(books, getParentFragmentManager(), getContext());
                 bookListRecyclerView.setAdapter(adapter);
             }
 

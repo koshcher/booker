@@ -135,6 +135,11 @@ public class AuthFragment extends Fragment {
         @Override
         public void onResponse(Call<ApiResult<String>> call, Response<ApiResult<String>> response) {
             ApiResult<String> result = response.body();
+            if(result == null) {
+                Toast.makeText(getContext(),"Something went wrong. Try later.", Toast.LENGTH_LONG).show();
+                return;
+            }
+
             if(result.getError() != null) {
                 Toast.makeText(getContext(), result.getError().getMessage(), Toast.LENGTH_LONG).show();
                 return;
