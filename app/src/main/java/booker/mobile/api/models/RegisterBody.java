@@ -15,5 +15,11 @@ public class RegisterBody {
     @SerializedName("confirmPassword")
     @Expose
     String confirmPassword;
+
+    public RegisterBody(String email, String password, String confirmPassword) {
+        this.email = email;
+        this.password = password;
+        this.confirmPassword = confirmPassword;
+    }
 }
 

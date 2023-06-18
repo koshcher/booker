@@ -3,6 +3,7 @@ package booker.mobile.ui.fragments;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -40,7 +41,14 @@ public class BookListFragment extends Fragment {
         bookListRecyclerView = view.findViewById(R.id.bookListRecyclerView);
 
         addNewBookBtn.setOnClickListener(v -> {
+            FragmentManager manager = getParentFragmentManager();
 
+            if(!Api.isAccessTokenExist()) {
+                manager.beginTransaction().replace(R.id.layoutContainer, new AuthFragment()).commit();
+                return;
+            }
+
+            manager.beginTransaction().replace(R.id.layoutContainer, new AddBookFragment()).commit();
         });
 
         Api.book().getAll().enqueue(new Callback<ApiResult<List<Book>>>() {

@@ -21,7 +21,7 @@ public interface BookController {
     Call<ApiResult<Book>> getOne(@Path("id") String id);
 
     @POST("/api/v1/book")
-    Call<ApiResult<Book>> postOne(@Body BookCreation bookCreation);
+    Call<NoDataApiResult> postOne(@Body BookCreation bookCreation);
 
     @DELETE("/api/v1/book/{id}")
     Call<NoDataApiResult> deleteOne(@Path("id") String id);

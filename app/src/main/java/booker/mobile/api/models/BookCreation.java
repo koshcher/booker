@@ -16,7 +16,9 @@ public class BookCreation {
     @Expose
     String author;
 
-    public String getAuthor() { return author; }
-    public String getDescription() { return description; }
-    public String getTitle() { return title; }
+    public BookCreation(String title, String description, String author) {
+        this.title = title;
+        this.description = description;
+        this.author = author;
+    }
 }
